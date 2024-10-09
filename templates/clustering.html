@@ -1,17 +1,17 @@
 <!-- templates/clustering.html -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Clustering Example - Customer Segmentation</title>
+{% extends "base.html" %}
+
+{% block title %}Clustering Example - Customer Segmentation{% endblock %}
+
+{% block content %}
+    <h2 class="text-center my-4">Customer Segmentation</h2>
+    <div id="cluster-plot"></div>
+{% endblock %}
+
+{% block scripts %}
     <!-- Include Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <h2>Customer Segmentation</h2>
-    <div id="cluster-plot"></div>
     <script type="text/javascript">
         // Data passed from Flask
         var data = {{ data | tojson | safe }};
@@ -41,11 +41,11 @@
             title: 'Customer Segmentation',
             xaxis: { title: 'Annual Income (k$)' },
             yaxis: { title: 'Spending Score (1-100)' },
-            hovermode: 'closest'
+            hovermode: 'closest',
+            font: { family: 'Arial, sans-serif', size: 12 },
+            margin: { l: 50, r: 50, t: 50, b: 50 },
         };
 
         Plotly.newPlot('cluster-plot', traces, layout, {responsive: true});
-
     </script>
-</body>
-</html>
+{% endblock %}
