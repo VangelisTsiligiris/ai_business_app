@@ -1,0 +1,92 @@
+<!-- templates/regression.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Regression Example - House Price Prediction{% endblock %}
+
+{% block content %}
+    <h2 class="text-center my-4">House Price Prediction</h2>
+    {% if prediction %}
+        <div class="alert alert-info">
+            <strong>Predicted House Price:</strong> ${{ '{:,.2f}'.format(prediction) }}
+        </div>
+        <a href="{{ url_for('regression') }}" class="btn btn-primary">Predict Another</a>
+    {% else %}
+        <form method="post">
+            <!-- Median Income -->
+            <div class="mb-3">
+                <label for="MedInc" class="form-label">
+                    Median Income in Block Group (Min: 0.4999, Max: 15.0001)
+                </label>
+                <input type="number" step="0.0001" name="MedInc" id="MedInc" class="form-control" required
+                       min="0.4999" max="15.0001">
+            </div>
+
+            <!-- House Age -->
+            <div class="mb-3">
+                <label for="HouseAge" class="form-label">
+                    Median House Age in Block Group (Min: 1.0, Max: 52.0)
+                </label>
+                <input type="number" step="0.1" name="HouseAge" id="HouseAge" class="form-control" required
+                       min="1.0" max="52.0">
+            </div>
+
+            <!-- Average Rooms -->
+            <div class="mb-3">
+                <label for="AveRooms" class="form-label">
+                    Average Number of Rooms (Min: 0.8462, Max: 141.9091)
+                </label>
+                <input type="number" step="0.0001" name="AveRooms" id="AveRooms" class="form-control" required
+                       min="0.8462" max="141.9091">
+            </div>
+
+            <!-- Average Bedrooms -->
+            <div class="mb-3">
+                <label for="AveBedrms" class="form-label">
+                    Average Number of Bedrooms (Min: 0.3333, Max: 34.0667)
+                </label>
+                <input type="number" step="0.0001" name="AveBedrms" id="AveBedrms" class="form-control" required
+                       min="0.3333" max="34.0667">
+            </div>
+
+            <!-- Population -->
+            <div class="mb-3">
+                <label for="Population" class="form-label">
+                    Population in Block Group (Min: 3, Max: 35682)
+                </label>
+                <input type="number" step="1" name="Population" id="Population" class="form-control" required
+                       min="3" max="35682">
+            </div>
+
+            <!-- Average Occupancy -->
+            <div class="mb-3">
+                <label for="AveOccup" class="form-label">
+                    Average Occupancy per Household (Min: 0.6923, Max: 1243.3333)
+                </label>
+                <input type="number" step="0.0001" name="AveOccup" id="AveOccup" class="form-control" required
+                       min="0.6923" max="1243.3333">
+            </div>
+
+            <!-- Latitude -->
+            <div class="mb-3">
+                <label for="Latitude" class="form-label">
+                    Latitude (Min: 32.54, Max: 41.95)
+                </label>
+                <input type="number" step="0.0001" name="Latitude" id="Latitude" class="form-control" required
+                       min="32.54" max="41.95">
+            </div>
+
+            <!-- Longitude -->
+            <div class="mb-3">
+                <label for="Longitude" class="form-label">
+                    Longitude (Min: -124.35, Max: -114.31)
+                </label>
+                <input type="number" step="0.0001" name="Longitude" id="Longitude" class="form-control" required
+                       min="-124.35" max="-114.31">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+    {% endif %}
+{% endblock %}

@@ -8,6 +8,11 @@ from sklearn.preprocessing import LabelEncoder
 
 app = Flask(__name__)
 
+# Load the regression model
+regression_model = joblib.load('models/regression_model.pkl')
+
+
+
 # Load the trained classification model
 classification_model = joblib.load('models/classification_model.pkl')
 
@@ -51,6 +56,33 @@ for col in categorical_cols:
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/regression', methods=['GET', 'POST'])
+def regression():
+    if request.method == 'POST':
+        # Get form data
+        data = [
+            float(request.form['MedInc']),
+            float(request.form['HouseAge']),
+            float(request.form['AveRooms']),
+            float(request.form['AveBedrms']),
+            float(request.form['Population']),
+            float(request.form['AveOccup']),
+            float(request.form['Latitude']),
+            float(request.form['Longitude']),
+        ]
+
+        # Convert to numpy array and reshape
+        data_array = np.array([data])
+
+        # Make prediction
+        prediction = regression_model.predict(data_array)
+        predicted_price = prediction[0] * 100000  # Convert to actual price
+
+        return render_template('regression.html', prediction=predicted_price)
+    else:
+        return render_template('regression.html')
+
 
 @app.route('/classification', methods=['GET', 'POST'])
 def classification():

@@ -5,12 +5,72 @@
 {% block title %}AI in Business Application{% endblock %}
 
 {% block content %}
-    <div class="mt-5 text-center">
-        <h1>Welcome to AI in Business Application</h1>
-        <p>Your platform for AI-powered business insights.</p>
-        <div class="d-flex justify-content-center mt-4">
-            <a href="{{ url_for('classification') }}" class="btn btn-primary m-2">Classification Example</a>
-            <a href="{{ url_for('clustering') }}" class="btn btn-secondary m-2">Clustering Example</a>
+    <div class="mt-5">
+        <h1 class="text-center">Welcome to AI in Business Application</h1>
+        <p class="text-center">Your platform for AI-powered business insights.</p>
+
+        <!-- Dataset Descriptions -->
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Classification Dataset -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ url_for('static', filename='images/classification.jpg') }}" class="card-img-top" alt="Classification">
+                        <div class="card-header text-white bg-primary">
+                            Classification Example
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Telco Customer Churn Dataset</h5>
+                            <p class="card-text">
+                                This dataset contains information about a telecommunication company's customers, used to predict customer churn.
+                            </p>
+                            <p><strong>Location:</strong> United States</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ url_for('classification') }}" class="btn btn-primary">Try Classification</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clustering Dataset -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ url_for('static', filename='images/clustering.jpg') }}" class="card-img-top" alt="Clustering">
+                        <div class="card-header text-white bg-success">
+                            Clustering Example
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mall Customer Segmentation Data</h5>
+                            <p class="card-text">
+                                This dataset includes data about mall customers, used to segment them based on spending patterns and income levels.
+                            </p>
+                            <p><strong>Location:</strong> United States</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ url_for('clustering') }}" class="btn btn-success">Try Clustering</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Regression Dataset -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ url_for('static', filename='images/regression.jpg') }}" class="card-img-top" alt="Regression">
+                        <div class="card-header text-white bg-warning">
+                            Regression Example
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">California Housing Prices Dataset</h5>
+                            <p class="card-text">
+                                This dataset contains California housing data from the 1990 census, used to predict median house values.
+                            </p>
+                            <p><strong>Location:</strong> California, United States</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ url_for('regression') }}" class="btn btn-warning text-white">Try Regression</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 {% endblock %}
