@@ -1,0 +1,50 @@
+<!-- templates/clustering.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clustering Example - Customer Segmentation</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Customer Segmentation</h2>
+    <div id="cluster-plot"></div>
+    <script type="text/javascript">
+        // Data passed from Flask
+        var data = {{ data | tojson | safe }};
+
+        // Prepare data for Plotly
+        var clusters = {};
+
+        data.forEach(function(row) {
+            var cluster = row.Cluster;
+            if (!clusters[cluster]) {
+                clusters[cluster] = {
+                    x: [],
+                    y: [],
+                    mode: 'markers',
+                    type: 'scatter',
+                    name: 'Cluster ' + cluster,
+                    marker: { size: 12 }
+                };
+            }
+            clusters[cluster].x.push(row.AnnualIncome);
+            clusters[cluster].y.push(row.SpendingScore);
+        });
+
+        var traces = Object.values(clusters);
+
+        var layout = {
+            title: 'Customer Segmentation',
+            xaxis: { title: 'Annual Income (k$)' },
+            yaxis: { title: 'Spending Score (1-100)' },
+            hovermode: 'closest'
+        };
+
+        Plotly.newPlot('cluster-plot', traces, layout);
+    </script>
+</body>
+</html>

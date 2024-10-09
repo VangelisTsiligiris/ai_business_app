@@ -1,0 +1,157 @@
+<!-- templates/classification.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classification Example - Customer Churn Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Customer Churn Prediction</h2>
+    {% if prediction %}
+        <p><strong>Prediction:</strong> Customer will churn: {{ prediction }}</p>
+        <a href="{{ url_for('classification') }}">Try Again</a>
+    {% else %}
+        <form method="post">
+            <!-- Gender -->
+            <label for="gender">Gender:</label>
+            <select name="gender" required>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+            </select><br>
+
+            <!-- Senior Citizen -->
+            <label for="SeniorCitizen">Senior Citizen:</label>
+            <select name="SeniorCitizen" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select><br>
+
+            <!-- Partner -->
+            <label for="Partner">Partner:</label>
+            <select name="Partner" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Dependents -->
+            <label for="Dependents">Dependents:</label>
+            <select name="Dependents" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Tenure -->
+            <label for="tenure">Tenure (months):</label>
+            <input type="number" name="tenure" required><br>
+
+            <!-- Phone Service -->
+            <label for="PhoneService">Phone Service:</label>
+            <select name="PhoneService" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Multiple Lines -->
+            <label for="MultipleLines">Multiple Lines:</label>
+            <select name="MultipleLines" required>
+                <option value="No phone service">No phone service</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Internet Service -->
+            <label for="InternetService">Internet Service:</label>
+            <select name="InternetService" required>
+                <option value="DSL">DSL</option>
+                <option value="Fiber optic">Fiber optic</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Online Security -->
+            <label for="OnlineSecurity">Online Security:</label>
+            <select name="OnlineSecurity" required>
+                <option value="No internet service">No internet service</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Online Backup -->
+            <label for="OnlineBackup">Online Backup:</label>
+            <select name="OnlineBackup" required>
+                <option value="No internet service">No internet service</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Device Protection -->
+            <label for="DeviceProtection">Device Protection:</label>
+            <select name="DeviceProtection" required>
+                <option value="No internet service">No internet service</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Tech Support -->
+            <label for="TechSupport">Tech Support:</label>
+            <select name="TechSupport" required>
+                <option value="No internet service">No internet service</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Streaming TV -->
+            <label for="StreamingTV">Streaming TV:</label>
+            <select name="StreamingTV" required>
+                <option value="No internet service">No internet service</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Streaming Movies -->
+            <label for="StreamingMovies">Streaming Movies:</label>
+            <select name="StreamingMovies" required>
+                <option value="No internet service">No internet service</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Contract -->
+            <label for="Contract">Contract:</label>
+            <select name="Contract" required>
+                <option value="Month-to-month">Month-to-month</option>
+                <option value="One year">One year</option>
+                <option value="Two year">Two year</option>
+            </select><br>
+
+            <!-- Paperless Billing -->
+            <label for="PaperlessBilling">Paperless Billing:</label>
+            <select name="PaperlessBilling" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <!-- Payment Method -->
+            <label for="PaymentMethod">Payment Method:</label>
+            <select name="PaymentMethod" required>
+                <option value="Electronic check">Electronic check</option>
+                <option value="Mailed check">Mailed check</option>
+                <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                <option value="Credit card (automatic)">Credit card (automatic)</option>
+            </select><br>
+
+            <!-- Monthly Charges -->
+            <label for="MonthlyCharges">Monthly Charges:</label>
+            <input type="number" step="0.01" name="MonthlyCharges" required><br>
+
+            <!-- Total Charges -->
+            <label for="TotalCharges">Total Charges:</label>
+            <input type="number" step="0.01" name="TotalCharges" required><br>
+
+            <!-- Submit Button -->
+            <button type="submit">Predict</button>
+        </form>
+    {% endif %}
+</body>
+</html>

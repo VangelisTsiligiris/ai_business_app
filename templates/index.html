@@ -1,0 +1,17 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI in Business Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to AI in Business Application</h1>
+    <nav>
+        <a href="{{ url_for('classification') }}">Classification Example</a>
+        <a href="{{ url_for('clustering') }}">Clustering Example</a>
+    </nav>
+</body>
+</html>
